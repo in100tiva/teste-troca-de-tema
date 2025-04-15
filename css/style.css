@@ -1,0 +1,146 @@
+:root {
+ 
+    --bg-color: #f8f9fa;          
+    --text-color: #212529;        
+    
+    --toggle-bg: #dee2e6;        
+    --toggle-circle: #ffffff;    
+    --toggle-border: #ced4da;    
+    --toggle-active: #198754;    
+    
+
+    --shadow: rgba(0, 0, 0, 0.1);
+    --transition-time: 0.3s;
+}
+
+#theme-toggle:checked {
+    --bg-color: #212529;        
+    --text-color: #f8f9fa;      
+    --toggle-bg: #495057;         
+    --toggle-border: #6c757d;     
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+
+.page {
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    
+ 
+    transition: background-color var(--transition-time) ease, 
+              color var(--transition-time) ease;
+}
+
+
+.content {
+    text-align: center;
+    max-width: 600px;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+
+.info-text {
+    line-height: 1.7;
+    font-size: 1.1rem;
+    opacity: 0.9;
+    transition: opacity var(--transition-time) ease;
+}
+
+.info-text:hover {
+    opacity: 1;
+}
+
+
+#theme-toggle {
+    position: absolute;
+    opacity: 0;
+}
+
+
+.theme-toggle-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+
+.toggle-label {
+
+    display: block;
+    width: 60px;
+    height: 30px;
+    border-radius: 30px;
+    
+
+    background-color: var(--toggle-bg);
+    border: 1px solid var(--toggle-border);
+    box-shadow: 0 2px 5px var(--shadow);
+    
+
+    cursor: pointer;
+    position: relative;
+    transition: background-color var(--transition-time) ease;
+}
+
+
+.toggle-label:before {
+    content: '';
+    position: absolute;
+
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+
+    top: 1px;
+    left: 2px;
+
+    background-color: var(--toggle-circle);
+    box-shadow: 0 2px 4px var(--shadow);
+
+    transition: transform var(--transition-time) ease;
+}
+
+
+#theme-toggle:checked + .theme-toggle-container .toggle-label {
+    background-color: var(--toggle-active);
+}
+
+
+#theme-toggle:checked + .theme-toggle-container .toggle-label:before {
+    transform: translateX(30px);
+}
+
+
+#theme-toggle:focus + .theme-toggle-container .toggle-label {
+    box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.5);
+}
+
+
+#theme-toggle:checked ~ .page .content {
+    animation: pulse 0.5s ease;
+}
